@@ -193,7 +193,33 @@ class LoginViewController: UIViewController {
               }
         
         // Login function
+        var username: String?
+        var email: String?
         
+        if usernameEmail.contains("@"), usernameEmail.contains("."){
+            //email
+            email = usernameEmail
+        } else {
+            //username
+            username = usernameEmail
+        }
+        
+        AuthManager.shared.loginUser(username: username, email: email, password: password) { success in
+            DispatchQueue.main.async {
+                if success {
+                    //user login
+                    self.dismiss(animated: true, completion: nil)
+                } else {
+                    //failed or error
+                    let alert = UIAlertController(title: "login error", message: "We are unable to log you in.", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: nil))
+                    print("came here")
+                    self.present(alert, animated: true)
+                    
+                }
+            }
+            
+        }
     }
     
     @objc private func didTapTermsButton() {
