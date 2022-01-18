@@ -110,7 +110,14 @@ class RegistrationViewController: UIViewController {
         else {
                   return
               }
-
+        
+        AuthManager.shared.registerNewUser(username: username, email: email, password: password){ registered in 
+            if registered {
+                //good to go
+            } else {
+                //faialed
+            }
+        }
     }
 }
 
