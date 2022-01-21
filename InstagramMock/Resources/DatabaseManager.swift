@@ -31,8 +31,12 @@ public class DatabaseManager {
         database.child(email.safeDatabaseKey()).setValue(["username": username]) { error, _ in
             if error == nil {
                 //success
+                completion(true)
+                return
             }
             else {
+                completion(false)
+                return
                 //failed
             }
         }
